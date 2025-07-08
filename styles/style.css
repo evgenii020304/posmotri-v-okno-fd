@@ -102,6 +102,7 @@ ol {
 .search-form__label {
   display: flex;
   align-items: center;
+  width: fit-content;
   gap: 5px;
   cursor: pointer;
 }
@@ -123,18 +124,32 @@ ol {
 /*Input*/
 
 .search-form__textfield {
+  display: flex;
   width: 225px;
   height: 27px;
   background: transparent;
   border: none;
-  border-top: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
+  color: #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   font: inherit;
-  color: rgb(255, 255, 255, 0.7);
   padding: 0;
+  appearance: none;
 }
 
-.search-form__textfield:focus-visible {
+.search-form__textfield::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-form__textfield:active {
+  outline: none;
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+.search-form__label:has(:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: 1px;
 }
@@ -150,17 +165,26 @@ ol {
   width: 19px;
   height: 19px;
   border: 1px solid #fff;
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form__pseudo-checkbox::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0
 }
 
 .search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
-  content: "";
-  display: block;
-  width: 15px;
-  height: 15px;
-  background-color: #fff;
+  opacity: 1;
 }
 
-.search-form__label:has(:focus-visible) {
+.search-form__label:has(.search-form__checkbox:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: 1px;
 }
@@ -174,12 +198,13 @@ ol {
   font-weight: 700;
   color: inherit;
   cursor: pointer;
+  height: 34px;
 }
 
 .search-form__submit-button {
   width: 194px;
-  height: 34px;
   margin-top: 20px;
+  align-self: flex-end;
 }
 
 .button:hover {
@@ -188,6 +213,10 @@ ol {
 
 .button:active {
   background-color: #545050;
+}
+
+.button:focus {
+  outline: none;
 }
 
 .button:focus-visible {
@@ -247,6 +276,10 @@ ol {
   background-color: #545050;
 }
 
+.content__card-link:focus {
+  outline: none;
+}
+
 .content__card-link:focus-visible {
   outline: 1px solid #fff;
   outline-offset: 1px;
@@ -261,6 +294,7 @@ ol {
   color: #fff;
   width: 193px;
   margin-top: -5px;
+  flex-grow: 1;
 }
 
 .content__card-link:hover .content__video-card-description-container {
@@ -292,7 +326,6 @@ ol {
 }
 
 .more-button {
-  margin: 28px 0 3px 3px;
-  width: 390px;
-  height: 34px;
+  margin: 26px 3px 3px;
+  width: calc(100% - 6px);
 }
